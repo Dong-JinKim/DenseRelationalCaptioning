@@ -1,9 +1,10 @@
 # DenseRelationalCaptioning
 
 The code for our [CVPR 2019](https://cvpr2019.thecvf.com/) paper,
+
 **[Dense Relational Captioning: Triple-Stream Networks for Relationship-Based Captioning](https://sites.google.com/view/relcap)**.
 
-Done by Dong-Jin Kim, Jinsoo Choi, Tae-Hyun Oh, and In So Kweon
+Done by Dong-Jin Kim, Jinsoo Choi, Tae-Hyun Oh, and In So Kweon.
 
 Link: **[arXiv](https://arxiv.org/pdf/1903.05942.pdf)** , **[Dataset](https://drive.google.com/file/d/1cCN36poslxe7cCMkLnhYK0a-Y3vO4Rfn/view?usp=sharing)**.
 
