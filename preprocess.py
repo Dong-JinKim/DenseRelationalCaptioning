@@ -410,7 +410,7 @@ if __name__ == '__main__':
 
   # INPUT settings
   parser.add_argument('--relationship_data',
-      default='data/visual-genome/1.2/relationships_as_long_caption3.json',
+      default='data/visual-genome/1.2/relational_captions.json',
       help='Input JSON file with relationships')
   parser.add_argument('--image_dir',
       default='data/visual-genome/VG_100K',
