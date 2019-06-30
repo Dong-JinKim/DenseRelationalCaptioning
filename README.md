@@ -6,12 +6,11 @@ The code for our [CVPR 2019](https://cvpr2019.thecvf.com/) paper,
 
 Done by Dong-Jin Kim, Jinsoo Choi, Tae-Hyun Oh, and In So Kweon.
 
-Link: **[arXiv](https://arxiv.org/pdf/1903.05942.pdf)** , **[Dataset](https://drive.google.com/file/d/1cCN36poslxe7cCMkLnhYK0a-Y3vO4Rfn/view?usp=sharing)**, **[Sample model](https://drive.google.com/file/d/19t6Ogcl_ZlW9G6sPLBiWXfepWlX7MXg3/view?usp=sharing)**.
+Link: **[arXiv](https://arxiv.org/pdf/1903.05942.pdf)** , **[Dataset](https://drive.google.com/file/d/1cCN36poslxe7cCMkLnhYK0a-Y3vO4Rfn/view?usp=sharing)**, **[Pre-trained model](https://drive.google.com/file/d/19t6Ogcl_ZlW9G6sPLBiWXfepWlX7MXg3/view?usp=sharing)**.
 
-(The instruction will be available soon.)
 
-We introduce “relational captioning,” a novel image captioning task which aims to generate multiple captions with respect to relational information between objects in an image. The figure shows the comparison with the previous frameworks.
 <img src='imgs/teaser.png'>
+We introduce “relational captioning,” a novel image captioning task which aims to generate multiple captions with respect to relational information between objects in an image. The figure shows the comparison with the previous frameworks.
 
 
 ## Installation
