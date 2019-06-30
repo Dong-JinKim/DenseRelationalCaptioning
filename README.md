@@ -45,8 +45,8 @@ This is not the exact model that was used in the paper, but with different hyper
 ## Evaluation
 To evaluate a model on our Relational Captioning Dataset, you will following the following steps:
 
-1. Download the raw images from [the Visual Genome website](https://visualgenome.org/api/v0/api_home.html)
-2. Download our relational captioning label from the following link: [Dataset](https://drive.google.com/file/d/1cCN36poslxe7cCMkLnhYK0a-Y3vO4Rfn/view?usp=sharing).
+1. Download the raw images from Visual Genome dataset version 1.2 : [the Visual Genome website](https://visualgenome.org/api/v0/api_home.html). Place the images in `data/visual-genome/VG_100K`.
+2. Download our relational captioning label from the following link: [Dataset](https://drive.google.com/file/d/1cCN36poslxe7cCMkLnhYK0a-Y3vO4Rfn/view?usp=sharing). Place the json file at `data/visual-genome/1.2/`.
 3. Use the script `preprocess.py` to generate a single HDF5 file containing the entire dataset.
 4. Use the script `evaluate_model.lua` to evaluate a trained model on the validation or test data.
 
