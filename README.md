@@ -39,7 +39,7 @@ You can download a pretrained Relational Captioning model from this link: [Pre-t
 
 Download the model and place it in `./`.
 
-This is not the exact model that was used in the paper, but with different hyperparameters. it achieve a recall of 36.25 on the test set which is better than the reall of 34.27 that we report in the paper.
+This is not the exact model that was used in the paper, but with different hyperparameters. it achieve a recall of 36.2 on the test set which is better than the reall of 34.27 that we report in the paper.
 
 
 ## Evaluation
