@@ -54,10 +54,11 @@ To evaluate a model on our Relational Captioning Dataset, you will following the
 ## Citation
 If you find our work useful in your research, please consider citing:
 ```
-@InProceedings{Kim_2019_CVPR,
-author = {Kim, Dong-Jin and Choi, Jinsoo and Oh, Tae-Hyun and Kweon, In So},
-title = {Dense Relational Captioning: Triple-Stream Networks for Relationship-Based Captioning},
-booktitle = {The IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
-year = {2019}
+@inproceedings{kim2019dense,
+  title={Dense relational captioning: Triple-stream networks for relationship-based captioning},
+  author={Kim, Dong-Jin and Choi, Jinsoo and Oh, Tae-Hyun and Kweon, In So},
+  booktitle={Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition},
+  pages={6271--6280},
+  year={2019}
 }
 ```
