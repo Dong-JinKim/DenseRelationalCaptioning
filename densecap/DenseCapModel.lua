@@ -141,8 +141,8 @@ function DenseCapModel:_buildRecognitionNet()
   local pos_roi_codes = nn.PosSlicer(){roi_codes, gt_boxes}
   local pos_roi_boxes = nn.PosSlicer(){roi_boxes, gt_boxes}
 
-  local subjobj = nn.UnionSlicer(){pos_roi_codes,idx}--FC7 feat recogbase !!!
-  --local subjobj = nn.UnionSlicer(){roi_feats,idx}--CONV5 feat all3
+  --local subjobj = nn.UnionSlicer(){pos_roi_codes,idx}--if FC7 feat for subj/obj
+  local subjobj = nn.UnionSlicer(){roi_feats,idx}--if CONV5 feat for all3
 
   local final_box_trans = self.nets.box_reg_branch(pos_roi_codes)
   

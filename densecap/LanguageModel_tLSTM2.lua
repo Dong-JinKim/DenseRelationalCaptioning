@@ -26,17 +26,8 @@ function LM:__init(opt)
   -- For mapping from image vectors to word vectors
   self.image_encoder = nn.Sequential()  
   
-  self.image_encoder:add(nn.SpatialAveragePooling(7,7))------!!!!2222(B, 512,7,7)->(B, 512,1,1)
-  self.image_encoder:add(nn.View(-1):setNumInputDims(3))--!!!222 (B, 512,1,1) -> (B,512)
-  
-  --self.image_encoder:add(nn.View(-1):setNumInputDims(3))-- (B, 512,7,7)->(B,25088)
-  --self.image_encoder:add(nn.Linear(25088,512))
-  --self.image_encoder:add(nn.ReLU(true))
-  --self.image_encoder:add(nn.Dropout(0.5))
-  --self.image_encoder:add(nn.Linear(512,512))
-  --self.image_encoder:add(nn.ReLU(true))
-  --self.image_encoder:add(nn.Dropout(0.5))
-
+  self.image_encoder:add(nn.SpatialAveragePooling(7,7))------(B, 512,7,7)->(B, 512,1,1)
+  self.image_encoder:add(nn.View(-1):setNumInputDims(3))--(B, 512,1,1) -> (B,512)
   
   self.image_encoder_real = nn.Sequential()
   
@@ -44,7 +35,7 @@ function LM:__init(opt)
   self.spatial_encoder:add(nn.Linear(6,64))
   self.spatial_encoder:add(nn.ReLU(true))
   
-  local image_encoder12 = nn.ParallelTable()---merge imvec and mask activation
+  local image_encoder12 = nn.ParallelTable()---merge imvec and spatial vector
   image_encoder12:add(self.image_encoder)
   image_encoder12:add(self.spatial_encoder)
   
@@ -60,36 +51,20 @@ function LM:__init(opt)
   -----------------------2-----------------
   self.image_encoder2 = nn.Sequential()  
   
-  --self.image_encoder2:add(nn.SpatialAveragePooling(7,7))------!!!!2222(B, 512,7,7)->(B, 512,1,1)
-  --self.image_encoder2:add(nn.View(-1):setNumInputDims(3))--!!!222 (B, 512,1,1) -> (B,512)
-  
-  --self.image_encoder2:add(nn.View(-1):setNumInputDims(3))-- (B, 512,7,7)->(B,25088)
-  --self.image_encoder2:add(nn.Linear(25088,512))
-  --self.image_encoder2:add(nn.ReLU(true))
-  
-  --self.image_encoder2:add(nn.SpatialConvolution(512, 16, 1, 1))
-  --self.image_encoder2:add(nn.ReLU(true))
-  --self.image_encoder2:add(nn.View(-1):setNumInputDims(3))-- (B, 16,7,7)->(B,784)
+  self.image_encoder2:add(nn.SpatialAveragePooling(7,7))------(B, 512,7,7)->(B, 512,1,1)
+  self.image_encoder2:add(nn.View(-1):setNumInputDims(3))--(B, 512,1,1) -> (B,512)
   
   
-  self.image_encoder2:add(nn.Linear(4096, W))----!!!222 (B,4096)-> (B,512)
+  self.image_encoder2:add(nn.Linear(512, W))--- (B,512)-> (B,512)
   self.image_encoder2:add(nn.ReLU(true))
   self.image_encoder2:add(nn.View(1, -1):setNumInputDims(1))
   -----------------------------------------
   self.image_encoder3 = nn.Sequential()  
   
-  --self.image_encoder3:add(nn.SpatialAveragePooling(7,7))------!!!!2222(B, 512,7,7)->(B, 512,1,1)
-  --self.image_encoder3:add(nn.View(-1):setNumInputDims(3))--!!!222 (B, 512,1,1) -> (B,512)
+  self.image_encoder3:add(nn.SpatialAveragePooling(7,7))------(B, 512,7,7)->(B, 512,1,1)
+  self.image_encoder3:add(nn.View(-1):setNumInputDims(3))--(B, 512,1,1) -> (B,512)
   
-  --self.image_encoder3:add(nn.View(-1):setNumInputDims(3))-- (B, 512,7,7)->(B,25088)
-  --self.image_encoder3:add(nn.Linear(25088,512))
-  --self.image_encoder3:add(nn.ReLU(true))
-  
-  --self.image_encoder3:add(nn.SpatialConvolution(512, 16, 1, 1))
-  --self.image_encoder3:add(nn.ReLU(true))
-  --self.image_encoder3:add(nn.View(-1):setNumInputDims(3))-- (B, 16,7,7)->(B,784)
-  
-  self.image_encoder3:add(nn.Linear(4096, W))----!!!222 (B,4096)-> (B,512)
+  self.image_encoder3:add(nn.Linear(512, W))----(B,512)-> (B,512)
   self.image_encoder3:add(nn.ReLU(true))
   self.image_encoder3:add(nn.View(1, -1):setNumInputDims(1))
 
