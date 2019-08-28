@@ -12,6 +12,10 @@ Link: **[arXiv](https://arxiv.org/pdf/1903.05942.pdf)** , **[Dataset](https://dr
 <img src='imgs/teaser.png'>
 We introduce “relational captioning,” a novel image captioning task which aims to generate multiple captions with respect to relational information between objects in an image. The figure shows the comparison with the previous frameworks.
 
+## Updates
+(08/28/2019)
+- Our code is changed to trainable version.
+- Codes for backpropagation part are added to several codes.
 
 ## Installation
 
