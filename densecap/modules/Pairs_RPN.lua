@@ -73,7 +73,14 @@ function layer:updateOutput(input)
 end
 
 function layer:updateGradInput(input, gradOutput)
-  return 0
+  local boxes = input[1]
+  local box_idxs = input[2]
+  
+  local feat_grad = boxes.new(#boxes):zero()
+  local box_grad = box_idxs.new(#box_idxs):zero()
+  
+  self.gradInput = {feat_grad,box_grad}
+  return self.gradInput
 end
 
 
