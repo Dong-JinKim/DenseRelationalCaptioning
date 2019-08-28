@@ -59,12 +59,13 @@ def build_vocab_dict(vocab):
 def encode_caption(tokens, token_to_idx, max_token_length):
   encoded = np.zeros(max_token_length, dtype=np.int32)
   for i, token in enumerate(tokens):
+    if i == max_token_length:
+      return encoded
     if token in token_to_idx:
       encoded[i] = token_to_idx[token]
     else:
       encoded[i] = token_to_idx['<UNK>']
-  return encoded
-
+return encoded
 
 def encode_captions(data, token_to_idx, max_token_length):
   encoded_list = []
