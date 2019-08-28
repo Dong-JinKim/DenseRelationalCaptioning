@@ -409,7 +409,11 @@ function DenseCapModel:forward_backward(data)
   grad_out[2] = grad_pos_roi_boxes
   grad_out[3] = grad_final_box_trans
   grad_out[4] = out[4].new(#out[4]):zero()
-  grad_out[5] = {grad_lm_output, grad_cls_output}
+  if part_loss then
+    grad_out[5] = {grad_lm_output, grad_cls_output}
+  else
+    grad_out[5] = grad_lm_output
+  end
   grad_out[6] = gt_boxes.new(#gt_boxes):zero()
   grad_out[7] = gt_labels.new(#gt_labels):zero()
   self:backward(input, grad_out)
