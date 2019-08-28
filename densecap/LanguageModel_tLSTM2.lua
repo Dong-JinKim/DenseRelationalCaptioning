@@ -123,13 +123,7 @@ function LM:__init(opt)
     end
   end
   local parallel1 = nn.ParallelTable()
-  if S==0 then
-    parallel1:add(self.image_encoder)
-  elseif S==6 then
-    parallel1:add(self.image_encoder_real)
-  else
-    dbg()
-  end
+  parallel1:add(self.image_encoder_real)
   parallel1:add(self.start_token_generator)
   parallel1:add(self.lookup_table)
   self.input1 = nn.Sequential()
@@ -365,9 +359,9 @@ function LM:sample(union_vectors, subj_vectors, obj_vectors,spatial)
     local rnnout3 = self.rnn3:forward(wordvecs3)
 
     ---concat/attention
-    local scores_tmp = self.out:forward(  torch.cat( {rnnout1, rnnout2,rnnout3} ,3)    )
+    --local scores_tmp = self.out:forward(  torch.cat( {rnnout1, rnnout2,rnnout3} ,3)    )
     --sum
-    --local scores_tmp = self.out:forward(  rnnout1 + rnnout2 + rnnout3     )
+    local scores_tmp = self.out:forward(  rnnout1 + rnnout2 + rnnout3     )
     
     local scores = scores_tmp[1]:view(N, -1)
 
