@@ -53,9 +53,10 @@ To evaluate a model on our Relational Captioning Dataset, please follow the foll
 
 
 ## Training (Code updating)
-To train a model on our Relational Captioning Dataset, you can simply run the code:
+To train a model on our Relational Captioning Dataset, you can simply follow these steps:
 
-1. Run `train.lua` to run the trainable code.
+1. Run `script/download_models.sh` to download VGG16 model.
+2. Run `train.lua` to train a relational captioner.
 
 
 ## Citation
