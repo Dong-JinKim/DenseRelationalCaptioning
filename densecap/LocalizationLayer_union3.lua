@@ -572,7 +572,7 @@ function build_rpn(opt)
     box_conv_layer.weight:zero()
   else
     box_conv_layer.weight:normal(0, opt.std)
-  end
+  end 
   box_conv_layer.bias:zero()
   box_branch:add(box_conv_layer)
   box_branch:add(nn.RegularizeLayer(opt.box_reg_decay))
