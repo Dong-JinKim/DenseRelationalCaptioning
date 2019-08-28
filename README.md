@@ -14,7 +14,7 @@ We introduce “relational captioning,” a novel image captioning task which ai
 
 ## Updates
 (08/28/2019)
-- Our code is changed to trainable version.
+- Our code is updated from evaluation-only to trainable version.
 - Codes for backpropagation part are added to several functions.
 
 ## Installation
