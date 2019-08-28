@@ -15,7 +15,7 @@ We introduce “relational captioning,” a novel image captioning task which ai
 ## Updates
 (08/28/2019)
 - Our code is changed to trainable version.
-- Codes for backpropagation part are added to several codes.
+- Codes for backpropagation part are added to several functions.
 
 ## Installation
 
@@ -56,7 +56,7 @@ To evaluate a model on our Relational Captioning Dataset, please follow the foll
 5. Use the script `evaluate_model.lua` to evaluate a trained model on the validation or test data.
 
 
-## Training (Code updating)
+## Training
 To train a model on our Relational Captioning Dataset, you can simply follow these steps:
 
 1. Run `script/download_models.sh` to download VGG16 model.
