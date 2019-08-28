@@ -168,8 +168,8 @@ while true do
     print('wrote ' .. opt.checkpoint_path .. '.json')
 
     -- Only save t7 checkpoint if there is an improvement in meteor
-    if results.ap_results.meteor > best_val_score then
-      best_val_score = results.ap_results.meteor-- (map or meteor)
+    if results.results.meteor > best_val_score then
+      best_val_score = results.results.meteor-- (recall or meteor)
       checkpoint.model = model
 
       model:clearState()
