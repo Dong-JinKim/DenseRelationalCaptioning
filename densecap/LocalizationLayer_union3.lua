@@ -530,7 +530,6 @@ function layer:updateGradInput(input, gradOutput)
   return self.gradInput
 end
 
-
 -- RPN returns {boxes, anchors, transforms, scores}
 function build_rpn(opt)
   -- Set up anchor sizes
