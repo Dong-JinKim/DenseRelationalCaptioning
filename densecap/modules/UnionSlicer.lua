@@ -5,8 +5,7 @@ function layer:__init()
   self.grad_features = torch.Tensor()
   self.grad_gt_features = torch.Tensor()
   
-  self.subj_index = nn.Index(1)
-  self.obj_index = nn.Index(1)
+
 end
 
 function layer:updateOutput(input)
@@ -16,10 +15,8 @@ function layer:updateOutput(input)
   if label_idx:nElement() == 0 then
     self.output = features--.new(1):zero()
   else
-    local out_subj = self.subj_index:forward{features,label_idx[{1,{}}]}
-    local out_obj  = self.obj_index:forward{features,label_idx[{2,{}}]}
-    
-    self.output = { out_subj , out_obj  }
+
+    self.output = { features:index(1,label_idx[{1,{}}]) , features:index(1,label_idx[{2,{}}])  }
   end
 
   return self.output
@@ -32,8 +29,7 @@ function layer:updateGradInput(input, gradOutput)
   if gt_features:nElement() == 0 then
     self.gradInput = {gradOutput, self.grad_gt_features}
   else
-    --self.grad_features:resizeAs(features):zero()
-    self.grad_features = self.subj_index:backward({features,gt_features[{1,{}}]},gradOutput[1])[1] + self.obj_index:backward({features,gt_features[{2,{}}]},gradOutput[2])[1]
+    self.grad_features:resizeAs(features):zero()
     self.gradInput = {self.grad_features, self.grad_gt_features}
   end
 
