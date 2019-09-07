@@ -160,7 +160,7 @@ function LM:__init(opt)
   self.net:add(combine)
   
   self.net:add(nn.JoinTable(2, 2))----(concat)
-  --self.net:add(nn.CAddTable())---(sum),
+  --self.net:add(nn.CAddTable())---(sum)
   --self.net:add(nn.CMulTable())---(mul)
 
 
