@@ -13,9 +13,13 @@ Link: **[arXiv](https://arxiv.org/pdf/1903.05942.pdf)** , **[Dataset](https://dr
 We introduce “relational captioning,” a novel image captioning task which aims to generate multiple captions with respect to relational information between objects in an image. The figure shows the comparison with the previous frameworks.
 
 ## Updates
-(08/28/2019)
+(28/08/2019)
 - Our code is updated from evaluation-only to trainable version.
 - Codes for backpropagation part are added to several functions.
+
+(06/09/2019)
+- Fixed the bug of UnionSlicer code.
+- Added eval_utils_mAP.lua.
 
 ## Installation
 
@@ -54,7 +58,7 @@ To evaluate a model on our Relational Captioning Dataset, please follow the foll
 3. Use the script `preprocess.py` to generate a single HDF5 file containing the entire dataset.
 4. Run `script/setup_eval.sh` to download and unpack METEOR jarfile.
 5. Use the script `evaluate_model.lua` to evaluate a trained model on the validation or test data.
-
+6. If you want to measure the mAP metric, change the line9 from `imRecall` to `mAP` and run `evaluate_model.lua`.
 
 ## Training
 To train a model on our Relational Captioning Dataset, you can simply follow these steps:
