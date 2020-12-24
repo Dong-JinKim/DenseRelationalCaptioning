@@ -1,12 +1,12 @@
 # Dense Relational Captioning
 
-The code for our [CVPR 2019](https://cvpr2019.thecvf.com/) paper,
+The code for our [CVPR 2019](https://cvpr2019.thecvf.com/) paper along with our journal extention paper ([arXiv](https://arxiv.org/abs/2010.03855)),
 
 **[Dense Relational Captioning: Triple-Stream Networks for Relationship-Based Captioning](https://sites.google.com/view/relcap)**.
 
 Done by Dong-Jin Kim, Jinsoo Choi, Tae-Hyun Oh, and In So Kweon.
 
-Link: **[arXiv](https://arxiv.org/pdf/1903.05942.pdf)** , **[Dataset](https://drive.google.com/file/d/1cCN36poslxe7cCMkLnhYK0a-Y3vO4Rfn/view?usp=sharing)**, **[Pre-trained model](https://drive.google.com/file/d/19t6Ogcl_ZlW9G6sPLBiWXfepWlX7MXg3/view?usp=sharing)**.
+Link: **[arXiv](https://arxiv.org/pdf/1903.05942.pdf)** , **[arXiv (Journal Extension)](https://arxiv.org/abs/2010.03855)** , **[Dataset](https://drive.google.com/file/d/1cCN36poslxe7cCMkLnhYK0a-Y3vO4Rfn/view?usp=sharing)**, **[Pre-trained model](https://drive.google.com/file/d/19t6Ogcl_ZlW9G6sPLBiWXfepWlX7MXg3/view?usp=sharing)**.
 
 
 <img src='imgs/teaser.png'>
@@ -20,6 +20,9 @@ We introduce “relational captioning,” a novel image captioning task which ai
 (06/09/2019)
 - Fixed the bug of UnionSlicer code.
 - Added eval_utils_mAP.lua.
+
+(24/12/2020)
+- Added the code for running our model on new images.
 
 ## Installation
 
@@ -50,6 +53,26 @@ Download the model and place it in `./`.
 This is not the exact model that was used in the paper, but with different hyperparameters. it achieve a recall of 36.2 on the test set which is better than the reall of 34.27 that we report in the paper.
 
 
+## Running on new images
+
+To run the model on new images, use the script `run_model.lua`. To run the pretrained model on an image,
+use the following command:
+
+```bash
+th run_model.lua -input_image /path/to/my/image/file.jpg
+```
+
+By default this will run in GPU mode; to run in CPU only mode, simply add the flag `-gpu -1`.
+
+If you have an entire directory of images on which you want to run the model, use the `-input_dir` flag instead:
+
+```bash
+th run_model.lua -input_dir /path/to/my/image/folder
+```
+
+This run the model on all files in the folder `/path/to/my/image/folder/` whose filename does not start with `.`.
+
+
 ## Evaluation
 To evaluate a model on our Relational Captioning Dataset, please follow the following steps:
 
@@ -68,7 +91,7 @@ To train a model on our Relational Captioning Dataset, you can simply follow the
 
 
 ## Citation
-If you find our work useful in your research, please consider citing:
+If you find our work useful in your research, please consider citing our CVPR2019 paper or our journal extension paper:
 ```
 @inproceedings{kim2019dense,
   title={Dense relational captioning: Triple-stream networks for relationship-based captioning},
@@ -77,4 +100,11 @@ If you find our work useful in your research, please consider citing:
   pages={6271--6280},
   year={2019}
 }
+@article{kim2020dense,
+  title={Dense Relational Image Captioning via Multi-task Triple-Stream Networks},
+  author={Kim, Dong-Jin and Oh, Tae-Hyun and Choi, Jinsoo and Kweon, In So},
+  journal={arXiv preprint arXiv:2010.03855},
+  year={2020}
+}
+
 ```
