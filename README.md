@@ -1,4 +1,4 @@
-# Dense Relational Captioning
+# Dense Relational Image Captioning
 
 The code for our [CVPR 2019](https://cvpr2019.thecvf.com/) paper along with our journal extention paper ([arXiv](https://arxiv.org/abs/2010.03855)),
 
@@ -106,5 +106,4 @@ If you find our work useful in your research, please consider citing our CVPR201
   journal={arXiv preprint arXiv:2010.03855},
   year={2020}
 }
-
 ```
