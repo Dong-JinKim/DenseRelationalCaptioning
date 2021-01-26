@@ -86,7 +86,8 @@ function layer:updateOutput(input)
   self.output_view[{{}, 3}]:exp(tw):cmul(wa)
   self.output_view[{{}, 4}]:exp(th):cmul(ha)
 
-  return self.output
+  return boxes
+  --return self.output
 end
 
 

@@ -16,13 +16,7 @@ function M.setup(opt)
     local rpn = model.nets.localization_layer.nets.rpn
     rpn:findModules('nn.RegularizeLayer')[1].w = opt.box_reg_decay
     model.opt.train_remove_outbounds_boxes = opt.train_remove_outbounds_boxes
-    model.opt.captioning_weight = opt.captioning_weight
-    
-    local model2 = DenseCapModel(opt)
-    model2.net:get(1):getParameters():copy(model.net:get(1):getParameters())
-    model2.net:get(2):getParameters():copy(model.net:get(2):getParameters())
-    model2.net:get(3):getParameters():copy(model.net:get(3):getParameters())
-    model = model2    
+    model.opt.captioning_weight = opt.captioning_weight   
 
     if cudnn then
       cudnn.convert(model.net, cudnn)
