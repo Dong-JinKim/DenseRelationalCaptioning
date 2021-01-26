@@ -27,6 +27,8 @@ function M.parse(arg)
     'Boxes with IoU less than this with all GT boxes are considered negatives')
   cmd:option('-train_remove_outbounds_boxes', 1,
     'Whether to ignore out-of-bounds boxes for sampling at training time')
+  cmd:option('-REM', 1,
+    'The number of REM module in the model; 0 not to use REM module.')
   
   -- Loss function weights
   cmd:option('-mid_box_reg_weight', 0.05,

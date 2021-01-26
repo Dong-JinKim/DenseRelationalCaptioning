@@ -51,20 +51,13 @@ function LM:__init(opt)
   -----------------------2-----------------
   self.image_encoder2 = nn.Sequential()  
   
-  self.image_encoder2:add(nn.SpatialAveragePooling(7,7))------(B, 512,7,7)->(B, 512,1,1)
-  self.image_encoder2:add(nn.View(-1):setNumInputDims(3))--(B, 512,1,1) -> (B,512)
-  
-  
-  self.image_encoder2:add(nn.Linear(512, W))--- (B,512)-> (B,512)
+  self.image_encoder2:add(nn.Linear(4096, W))--- (B,4096)-> (B,512)
   self.image_encoder2:add(nn.ReLU(true))
   self.image_encoder2:add(nn.View(1, -1):setNumInputDims(1))
   -----------------------------------------
   self.image_encoder3 = nn.Sequential()  
-  
-  self.image_encoder3:add(nn.SpatialAveragePooling(7,7))------(B, 512,7,7)->(B, 512,1,1)
-  self.image_encoder3:add(nn.View(-1):setNumInputDims(3))--(B, 512,1,1) -> (B,512)
-  
-  self.image_encoder3:add(nn.Linear(512, W))----(B,512)-> (B,512)
+
+  self.image_encoder3:add(nn.Linear(4096, W))----(B,4096)-> (B,512)
   self.image_encoder3:add(nn.ReLU(true))
   self.image_encoder3:add(nn.View(1, -1):setNumInputDims(1))
 

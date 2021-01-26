@@ -10,6 +10,7 @@ require 'densecap.modules.ApplyBoxTransform'
 require 'densecap.modules.LogisticCriterion'
 require 'densecap.modules.PosSlicer'
 require 'densecap.modules.UnionSlicer'
+require 'densecap.modules.RelationalEmbedding'
 
 local box_utils = require 'densecap.box_utils'
 local utils = require 'densecap.utils'
@@ -89,6 +90,16 @@ function DenseCapModel:__init(opt)
   self.nets.recog_base = net_utils.subsequence(cnn, recog_start, recog_end)
   self.nets.recog_base2 = net_utils.subsequence(cnn, recog_start, recog_end)
   
+  
+  if opt.REM > 0 then
+    self.nets.relational_embedding =  nn.Sequential()
+    for i = 1,opt.REM do 
+      self.nets.relational_embedding:add(nn.RelationalEmbedding())
+      self.nets.relational_embedding:add(nn.Linear(fc_dim,fc_dim))
+      self.nets.relational_embedding:add(nn.ReLU(true))
+    end
+  end
+  
   -- Objectness branch; outputs positive / negative probabilities for final boxes
   self.nets.objectness_branch = nn.Linear(fc_dim, 1)
   self.nets.objectness_branch.weight:normal(0, opt.std)
@@ -110,7 +121,7 @@ function DenseCapModel:__init(opt)
   }
   self.nets.language_model = nn.LanguageModel(lm_opt)
 
-  self.nets.recog_net = self:_buildRecognitionNet()
+  self.nets.recog_net = self:_buildRecognitionNet(opt)
   self.net:add(self.nets.recog_net)
 
   -- Set up Criterions
@@ -125,7 +136,7 @@ function DenseCapModel:__init(opt)
 end
 
 
-function DenseCapModel:_buildRecognitionNet()
+function DenseCapModel:_buildRecognitionNet(opt)
   local roi_feats = nn.Identity()()
   local roi_boxes = nn.Identity()()
   local gt_boxes = nn.Identity()()
@@ -140,9 +151,17 @@ function DenseCapModel:_buildRecognitionNet()
 
   local pos_roi_codes = nn.PosSlicer(){roi_codes, gt_boxes}
   local pos_roi_boxes = nn.PosSlicer(){roi_boxes, gt_boxes}
+  
+  local pos_roi_codes_tmp
+  if opt.REM > 0 then
+    pos_roi_codes_tmp = self.nets.relational_embedding(pos_roi_codes)-------!!!! when using relational embedding
+  else 
+    pos_roi_codes_tmp = pos_roi_codes
+  end
+  local pos_roi_codes = pos_roi_codes_tmp
 
-  --local subjobj = nn.UnionSlicer(){pos_roi_codes,idx}--if FC7 feat for subj/obj
-  local subjobj = nn.UnionSlicer(){roi_feats,idx}--if CONV5 feat for all3
+  local subjobj = nn.UnionSlicer(){pos_roi_codes,idx}--if FC7 feat for subj/obj
+  --local subjobj = nn.UnionSlicer(){roi_feats,idx}--if CONV5 feat for all3
 
   local final_box_trans = self.nets.box_reg_branch(pos_roi_codes)
   
