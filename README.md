@@ -24,6 +24,9 @@ We introduce “relational captioning,” a novel image captioning task which ai
 (24/12/2020)
 - Added the code for running our model on new images.
 
+(26/01/2021)
+- Updated the model in the journal extension version (MTTSNet+REM).
+
 ## Installation
 
 Some of the codes are built upon DenseCap: Fully Convolutional Localization Networks for Dense Captioning [[website]](https://cs.stanford.edu/people/karpathy/densecap/). We appreciate them for their great work.
@@ -46,7 +49,7 @@ luarocks install cudnn
 ```
 
 ## Pre-trained model
-You can download a pretrained Relational Captioning model from this link: [Pre-trained model](https://drive.google.com/file/d/19t6Ogcl_ZlW9G6sPLBiWXfepWlX7MXg3/view?usp=sharing):
+You can download a pretrained Relational Captioning model from this link: Pre-trained models for either [CVPR19 version](https://drive.google.com/file/d/19t6Ogcl_ZlW9G6sPLBiWXfepWlX7MXg3/view?usp=sharing) or [Journal version](https://drive.google.com/file/d/1iIGJ78krcxmh9NApzt4QzKj9efA-NnEB/view?usp=sharing).
 
 Download the model and place it in `./`.
 
@@ -80,14 +83,37 @@ To evaluate a model on our Relational Captioning Dataset, please follow the foll
 2. Download our relational captioning label from the following link: [Dataset](https://drive.google.com/file/d/1cCN36poslxe7cCMkLnhYK0a-Y3vO4Rfn/view?usp=sharing). Place the json file at `./data/visual-genome/1.2/`.
 3. Use the script `preprocess.py` to generate a single HDF5 file containing the entire dataset.
 4. Run `script/setup_eval.sh` to download and unpack METEOR jarfile.
-5. Use the script `evaluate_model.lua` to evaluate a trained model on the validation or test data.
+5. Use the script `evaluate_model.lua` to evaluate a trained model on the validation or test data either with CVPR 2019 version (MTTSNet):
+```bash
+th evaluate_model.lua -checkpoint checkpoint_VGlongv3_tLSTM_MTL2_1e6.t7
+```
+or with recent journal extension version (MTTSNet+REM):
+```bash
+th evaluate_model.lua -checkpoint checkpoint_VGlongv3_REM_tLSTM_MTL2_512_FC+nonlinear_1e6.t7
+```
 6. If you want to measure the mAP metric, change the line9 from `imRecall` to `mAP` and run `evaluate_model.lua`.
 
 ## Training
 To train a model on our Relational Captioning Dataset, you can simply follow these steps:
 
 1. Run `script/download_models.sh` to download VGG16 model.
-2. Run `train.lua` to train a relational captioner.
+2. Run `train.lua` to train a relational captioner. As default, the option -REM is set to be 1 which is for the journal version model (MTTSNet+REM). If you want to train a CVPR19 version model (MTTSNet), set the option -REM to be 0:
+```bash
+th train.lua -REM 0
+```
+The Recall and METEOR scores for the provided model for are as follows:
+|Model|Recall|METEOR|
+|:-|:-:|:-:|
+|Direct Union [1] |17.32|11.02|
+|Neural Motifs [2] |29.90|15.34|
+|**MTTSNet (Ours)**|**34.27**|**18.73**|
+|**MTTSNet (Ours) + REM**|**45.96**|**18.44**|
+
+**References:**
+
+[1] Johnson, J., Karpathy, A., & Fei-Fei, L. (2016). Densecap: Fully convolutional localization networks for dense captioning. In Proceedings of the IEEE conference on computer vision and pattern recognition (pp. 4565-4574).
+
+[2] Zellers, R., Yatskar, M., Thomson, S., & Choi, Y. (2018). Neural motifs: Scene graph parsing with global context. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (pp. 5831-5840).
 
 
 ## Citation
@@ -100,6 +126,7 @@ If you find our work useful in your research, please consider citing our CVPR201
   pages={6271--6280},
   year={2019}
 }
+
 @article{kim2020dense,
   title={Dense Relational Image Captioning via Multi-task Triple-Stream Networks},
   author={Kim, Dong-Jin and Oh, Tae-Hyun and Choi, Jinsoo and Kweon, In So},
