@@ -10,7 +10,7 @@ local eval_utils = require 'eval.eval_utils_imRecall'
 
 local cmd = torch.CmdLine()
 cmd:option('-checkpoint',
-  'checkpoint_VGlongv3_tLSTM_MTL2_1e6.t7',
+  'checkpoint_VGlongv3_REM_tLSTM_MTL2_512_FC+nonlinear_1e6.t7',
   'The checkpoint to evaluate')
 cmd:option('-data_h5', '', 'The HDF5 file to load data from; optional.')
 cmd:option('-data_json', '', 'The JSON file to load data from; optional.')
