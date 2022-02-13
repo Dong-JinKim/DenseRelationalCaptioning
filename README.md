@@ -127,10 +127,11 @@ If you find our work useful in your research, please consider citing our CVPR201
   year={2019}
 }
 
-@article{kim2020dense,
-  title={Dense Relational Image Captioning via Multi-task Triple-Stream Networks},
+@article{kim2021dense,
+  title={Dense relational image captioning via multi-task triple-stream networks},
   author={Kim, Dong-Jin and Oh, Tae-Hyun and Choi, Jinsoo and Kweon, In So},
-  journal={arXiv preprint arXiv:2010.03855},
-  year={2020}
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year={2021},
+  publisher={IEEE}
 }
 ```
