@@ -117,7 +117,7 @@ The Recall and METEOR scores for the provided model for are as follows:
 
 
 ## Citation
-If you find our work useful in your research, please consider citing our CVPR2019 paper or our journal extension paper:
+If you find our work useful in your research, please consider citing our CVPR2019 paper or our TPAMI version paper:
 ```
 @inproceedings{kim2019dense,
   title={Dense relational captioning: Triple-stream networks for relationship-based captioning},
