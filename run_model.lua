@@ -64,6 +64,7 @@ function run_image(model, img_path, opt, dtype)
 
   local out = {
     img = img,
+    scores = scores,
     boxes = boxes_xywh,
     captions = captions,
   }
